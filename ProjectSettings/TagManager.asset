@@ -7,6 +7,7 @@ TagManager:
   - Character
   - PathNode
   - Enemy
+  - CameraFocus
   layers:
   - Default
   - TransparentFX

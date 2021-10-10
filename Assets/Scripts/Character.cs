@@ -10,10 +10,13 @@ public class Character : MonoBehaviour
 
     public float speed = 1f;
 
+    public int Health = 3;
+    public int Manna = 3;
+    public int Atletics = 1;
+
     private HexGrid grid;
 
     private List<PathNode> path = new List<PathNode>();
-    private List<PathNode> path_old = new List<PathNode>();
 
     private PathNode next_step = null;
 
@@ -24,6 +27,7 @@ public class Character : MonoBehaviour
     private Material ground_material;
 
     private bool need_update = false;
+
 
     public void Awake()
     {
@@ -50,16 +54,22 @@ public class Character : MonoBehaviour
     public void MoveByPath(List<PathNode> path_to_go) 
     {
         this.path = path_to_go;
-        this.path_old = path_to_go;
 
-        path[0].status = "free";
+        ClearTile(path[0]);
 
         this.path.Remove(this.path[0]);  // 0 node is the current position
 
         this.gameObject.SetActive(true);
         myAnimator.SetBool("run", true);
+        this.GetComponent<Outline>().enabled = true;
 
         need_update = true;
+    }
+
+    private void ClearTile(PathNode tile)
+    {
+        tile.status = "free";
+        tile.gameObject.GetComponent<Renderer>().material = ground_material;
     }
 
     // Update is called once per frame
@@ -94,6 +104,7 @@ public class Character : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, new_position, speed * Time.deltaTime);
             } else
             {
+                ClearTile(next_step);
                 path.Remove(next_step);
                 next_step = null;
             }
@@ -104,12 +115,7 @@ public class Character : MonoBehaviour
             // end of path:
             myAnimator.SetBool("run", false);
 
-            // clean the info about color of the tile
-            foreach (PathNode path_node in this.path_old)
-            {
-                Debug.Log(path_node);
-                path_node.gameObject.GetComponent<Renderer>().material = ground_material;
-            }
+            this.GetComponent<Outline>().enabled = false;
         }
         
     }

@@ -13,6 +13,7 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] public int mapWidth = 100;
     [SerializeField] public int mapHeight = 100;
     [SerializeField] public float radius = 10f;
+    [SerializeField] public float radius_total = 10.2f;
 
     private float zOffset = 1.52f;
     private float xOffset = 1.76f;
@@ -67,47 +68,46 @@ public class MapGeneration : MonoBehaviour
                     new_position = new Vector3(x * xOffset + xOffset / 2, 0.0f, z * zOffset);
                 }
 
-                if (Vector3.Distance(new_position, transform.position) > radius)
+                if (Vector3.Distance(new_position, transform.position) > radius_total)
                 {
                     continue;
                 }
 
 
-                    PathNode new_tile = null;
+                PathNode new_tile = null;
                 bool blocked = false;
 
-                if (-1 <= z + x && z + x <= 1)
-                {
-                    new_tile = Instantiate(this.hex_field_with_grass);
-                }
-                else
+                if (Vector3.Distance(new_position, transform.position) < radius)
                 {
                     // select the field type
-                    int field_type = Random.Range(1, 14);
+                    int field_type = Random.Range(1, 30);
 
-                    if (field_type < 9)
+                    if (field_type < 26)
                     {
                         new_tile = Instantiate(this.hex_field_with_grass);
                     }
                     else
-                    if (field_type < 10)
+                    if (field_type < 27)
                     {
                         new_tile = Instantiate(this.hex_field_with_stone);
                         blocked = true;
                     }
-                    else if (field_type < 11)
+                    else if (field_type < 28)
                     {
                         new_tile = Instantiate(this.hex_field_with_tree1);
                         blocked = true;
                     }
-                    else if (field_type < 12)
+                    else if (field_type < 31)
                     {
                         new_tile = Instantiate(this.hex_field_with_tree2);
                         blocked = true;
-                    } else
-                    {
-                        new_tile = Instantiate(this.hex_field_with_grass);
                     }
+                }
+                else
+                {
+                    // area around war zone, it should be blocked for player:
+                    new_tile = Instantiate(this.hex_field_with_tree2);
+                    blocked = true;
                 }
 
                 if (z % 2 == 0)
@@ -136,6 +136,7 @@ public class MapGeneration : MonoBehaviour
         // mark all trees as blocked fields
         if (blocked) tile.status = "blocked";
 
+        tile.original_material = tile.GetComponent<Renderer>().material;
         tile.name = x.ToString() + ", " + z.ToString();
         tile.tag = "PathNode";
 

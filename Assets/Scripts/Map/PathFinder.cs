@@ -18,9 +18,16 @@ public class PathFinder
     private List<PathNode> openList;
     private List<PathNode> closedList;
 
+    private Material ground_material;
+    private Material selected_path;
+
     public PathFinder(HexGrid grid)
     {
         this.grid = grid;
+
+        // to hide path
+        ground_material = Resources.Load("Materials/Ground_0", typeof(Material)) as Material;
+        selected_path = Resources.Load("Materials/SelectedPath", typeof(Material)) as Material;
     }
 
     public List<PathNode> findPath(PathNode start_node, PathNode end_node)
@@ -97,10 +104,22 @@ public class PathFinder
         {
             foreach(PathNode node in full_path)
             {
-                grid.gridArray[node.x, node.z].GetComponent<Renderer>().material.color = Color.magenta;
+                grid.gridArray[node.x, node.z].GetComponent<Renderer>().material = selected_path;
             }
         }
     }
+
+    public void clearPath()
+    {
+        if (full_path != null)
+        {
+            foreach (PathNode node in full_path)
+            {
+                grid.gridArray[node.x, node.z].GetComponent<Renderer>().material = grid.gridArray[node.x, node.z].original_material;
+            }
+        }
+    }
+
 
     public List<PathNode> getNeighbors(PathNode node)
     {
@@ -109,9 +128,7 @@ public class PathFinder
 
         if (node != null)
         {
-            // PathNode node = node_object.GetComponent<PathNode>();
-
-            if (node.z % 2 == 0) /// bug here
+            if (node.z % 2 == 1)
             {
                 neighbor = grid.gridArray[node.x, node.z + 1];
                 if (neighbor != null && neighbor.status != "blocked")
@@ -189,11 +206,12 @@ public class PathFinder
             }
         }
 
-        
+        /*
         foreach(PathNode n in neighbors)
         {
             n.GetComponent<Renderer>().material.color = Color.black;
         }
+        */
 
         return neighbors;
     }

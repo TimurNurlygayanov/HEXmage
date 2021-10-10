@@ -12,7 +12,12 @@ public class GameController : MonoBehaviour
     public PathFinder pathFinder;
 
     public string status = "idle";
-    public Character character;
+    public Character active_character;
+
+    public List<Player> players = new List<Player>();
+    public int active_player_number = 0;
+
+    public CameraFocusObject cameraFocus;
 
     public void Init(HexGrid grid)
     {
@@ -27,8 +32,6 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Click");
-
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -40,29 +43,59 @@ public class GameController : MonoBehaviour
                         {
                             end_node = hit.transform.gameObject.GetComponent<PathNode>();
 
-                            end_node.GetComponent<Renderer>().material.color = Color.yellow;
-
                             pathFinder.findPath(start_node, end_node);
                             pathFinder.drawPath();
 
-                            character.MoveByPath(pathFinder.full_path);
+                            active_character.MoveByPath(pathFinder.full_path);
+
+                            cameraFocus.Move(pathFinder.full_path[pathFinder.full_path.Count-1].transform.position, 3f);
 
                             status = "idle";
                         }
                     }
                 }
+            } else
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+                if (Physics.Raycast(ray, out hit, 10000f))
+                {
+                    if (hit.transform != null)
+                    {
+                        if (hit.transform.gameObject.tag == "PathNode")
+                        {
+                            end_node = hit.transform.gameObject.GetComponent<PathNode>();
 
+                            pathFinder.clearPath();
+                            pathFinder.findPath(start_node, end_node);
+                            pathFinder.drawPath();
+                        }
+                    }
+                }
             }
         }
     }
 
 
+    public void SwitchTurn()
+    {
+        active_player_number += 1;
+        if (active_player_number >= players.Count)
+        {
+            active_player_number = 0;
+        }
+
+        active_character = players[active_player_number].GetCharacter();
+        cameraFocus.Move(active_character.transform.position, 1f);
+    }
+
+
     public void startSearchPath()
     {
-        character = GameObject.FindGameObjectWithTag("Character").GetComponent<Character>();
+        active_character = players[active_player_number].GetCharacter();
 
-        start_node = grid.gridArray[character.x, character.z];
+        start_node = grid.gridArray[active_character.x, active_character.z];
         start_node.GetComponent<Renderer>().material.color = Color.red;
 
         status = "search_path";

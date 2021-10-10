@@ -15,6 +15,8 @@ public class PathNode: MonoBehaviour
 
     public string status = "free";  // free, blocked, effect_fire ?
 
+    public Material original_material;
+
     public PathNode(int x, int z)
     {
         this.x = x;

@@ -12,8 +12,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -314,7 +316,7 @@ ScriptsOnlyBuild:
     className: CinemachineVirtualCamera
   - hash:
       serializedVersion: 2
-      Hash: 1ca43dc4ea21ccde548fa1469ee4dd0e
+      Hash: bab86f2ba979d5977061dc2d3a1510ba
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapGeneration

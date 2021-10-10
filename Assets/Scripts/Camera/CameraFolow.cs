@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 // Tutorials
@@ -36,19 +37,33 @@ public class CameraFolow : MonoBehaviour
         transform.LookAt(target);
     }
 
-    public void FixedUpdate()
+    public void LateUpdate()
     {
-        
+        RotateAndZoom();
+
+        // define new position and smoothly move the camera with interpolation
+        Vector3 newPosition = target.position + offset;
+        transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+
+        if (target.gameObject.GetComponent<Rigidbody>().velocity == new Vector3(0, 0, 0))
+        {
+            relativePos = target.position - transform.position;
+            rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 100 * smoothFactor);
+            // transform.LookAt(target);
+        }
     }
 
-    public void LateUpdate()
+    private void RotateAndZoom()
     {
         if (Input.GetMouseButton(1))
         {
+
             if (Input.GetAxis("Mouse X") > 0)
             {
                 mouse_x = 0.1f;
-            } else if (Input.GetAxis("Mouse X") < 0)
+            }
+            else if (Input.GetAxis("Mouse X") < 0)
             {
                 mouse_x = -0.1f;
             }
@@ -86,17 +101,7 @@ public class CameraFolow : MonoBehaviour
         {
             offset = offset.normalized * maxDistance;
         }
-
-        // define new position and smoothly move the camera with interpolation
-        Vector3 newPosition = target.position + offset;
-
-        transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
-        //transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, Time.fixedDeltaTime);
-
-        relativePos = target.position - transform.position;
-        rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 100 * smoothFactor);
-
     }
+
 
 }
