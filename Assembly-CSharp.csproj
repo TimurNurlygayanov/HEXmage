@@ -55,21 +55,25 @@
   <ItemGroup>
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Game\Player.cs" />
     <Compile Include="Assets\Scripts\buttons\UI_Buttons.cs" />
     <Compile Include="Assets\Scripts\Map\PathFinder.cs" />
     <Compile Include="Assets\Scripts\Map\MapGeneration.cs" />
-    <Compile Include="Assets\Scripts\Character.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraFolow.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\Map\PathNode.cs" />
+    <Compile Include="Assets\Scripts\Game\Character.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFocusObject.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraFolow.cs" />
+    <Compile Include="Assets\Scripts\Game\GameController.cs" />
+    <Compile Include="Assets\Scripts\Map\PathNode.cs" />
+    <Compile Include="Assets\Scripts\Spells\Fireball.cs" />
+    <Compile Include="Assets\Scripts\Skills\Skill.cs" />
+    <Compile Include="Assets\Scripts\Skills\FereballSpell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fantasy Skybox FREE\Readme.txt" />
     <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\QuickOutline\Readme.txt" />
     <None Include="Assets\LowpolyVegetationPackFree\Readme.txt" />
+    <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
   </ItemGroup>
   <ItemGroup>

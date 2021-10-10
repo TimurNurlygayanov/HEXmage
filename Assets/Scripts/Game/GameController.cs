@@ -28,6 +28,11 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            active_character.SkillActivate();
+        }
+
         if (status == "search_path")
         {
             if (Input.GetMouseButtonDown(0))

@@ -28,6 +28,8 @@ public class Character : MonoBehaviour
 
     private bool need_update = false;
 
+    public Fireball fireball_prefab;
+
 
     public void Awake()
     {
@@ -70,6 +72,12 @@ public class Character : MonoBehaviour
     {
         tile.status = "free";
         tile.gameObject.GetComponent<Renderer>().material = ground_material;
+    }
+
+    public void SkillActivate()
+    {
+        Fireball fireball = Instantiate(fireball_prefab, transform.position + new Vector3(0, 1f, 0), transform.rotation * Quaternion.Euler(90f, 0f, -180f));
+        fireball.GetComponent<Rigidbody>().velocity = transform.forward * 5f;
     }
 
     // Update is called once per frame

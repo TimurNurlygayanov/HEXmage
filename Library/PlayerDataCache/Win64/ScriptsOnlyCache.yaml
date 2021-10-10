@@ -1,11 +1,14 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CameraFocusObject
     - CameraFolow
     - Character
     - GameController
     - MapGeneration
+    - Outline
     - PathNode
+    - Player
     - UI_Buttons
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -72,31 +75,37 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1482}
+      Script: {instanceID: 1476}
     - Class: 114
-      Script: {instanceID: 1826}
+      Script: {instanceID: 1488}
     - Class: 114
-      Script: {instanceID: 2010}
+      Script: {instanceID: 1626}
     - Class: 114
-      Script: {instanceID: 2312}
+      Script: {instanceID: 1834}
     - Class: 114
-      Script: {instanceID: 2398}
+      Script: {instanceID: 2018}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 2320}
     - Class: 114
-      Script: {instanceID: 2592}
+      Script: {instanceID: 2406}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2442}
     - Class: 114
-      Script: {instanceID: 2874}
+      Script: {instanceID: 2600}
     - Class: 114
-      Script: {instanceID: 4024}
+      Script: {instanceID: 2794}
     - Class: 114
-      Script: {instanceID: 4188}
+      Script: {instanceID: 2882}
     - Class: 114
-      Script: {instanceID: 4222}
+      Script: {instanceID: 4032}
     - Class: 114
-      Script: {instanceID: 4550}
+      Script: {instanceID: 4056}
+    - Class: 114
+      Script: {instanceID: 4198}
+    - Class: 114
+      Script: {instanceID: 4232}
+    - Class: 114
+      Script: {instanceID: 4560}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -116,6 +125,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: ff7f58b226cfe4de0dc241bd88d5a904
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Outline
   - hash:
       serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
@@ -172,6 +187,12 @@ ScriptsOnlyBuild:
     className: LayoutElement
   - hash:
       serializedVersion: 2
+      Hash: 7c530d153ba3eb7d66fcb05d1d33d2f6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Player
+  - hash:
+      serializedVersion: 2
       Hash: 6bc76e17f0d5e93f3eea7f5a2fe227f3
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -220,7 +241,7 @@ ScriptsOnlyBuild:
     className: CinemachineCameraOffset
   - hash:
       serializedVersion: 2
-      Hash: c35e3ecf42a895279c19796d5141d3e1
+      Hash: 76e5444e7a1b26a6c00c9220e598c917
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UI_Buttons
@@ -760,10 +781,16 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: a8f86222438e26323989a9a613635d6d
+      Hash: 60e338730dacff9ce268e8f5f32efda5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Character
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraFocusObject
   - hash:
       serializedVersion: 2
       Hash: fd68d84f33fad85aac38f2739c0ee270
@@ -802,7 +829,7 @@ ScriptsOnlyBuild:
     className: CinemachineRecomposer
   - hash:
       serializedVersion: 2
-      Hash: f4007ebb311be8536aab9dc287f8564d
+      Hash: d687168274cd2c5d5cf25e3e914d33e2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -856,7 +883,7 @@ ScriptsOnlyBuild:
     className: CinemachineBlendListCamera
   - hash:
       serializedVersion: 2
-      Hash: ecf673def53abc79078fca4c19fd209a
+      Hash: ee804dd84b47b24f3ae82df438a32fbb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PathNode
