@@ -1,5 +1,4 @@
 
-using System.Collections;
 using UnityEngine;
 
 // Tutorials
@@ -26,7 +25,7 @@ public class CameraFolow : MonoBehaviour
     public float maxDistance = 7f;
 
     private float mouse_x = 0;
-    private float mouse_y = 0;
+    // private float mouse_y = 0;
 
     Vector3 relativePos;
     Quaternion rotation;
@@ -66,14 +65,6 @@ public class CameraFolow : MonoBehaviour
             else if (Input.GetAxis("Mouse X") < 0)
             {
                 mouse_x = -0.1f;
-            }
-            if (Input.GetAxis("Mouse Y") > 0)
-            {
-                mouse_y = 0.1f;
-            }
-            else if (Input.GetAxis("Mouse Y") < 0)
-            {
-                mouse_y = -0.1f;
             }
 
             // rotate the camera smoothly

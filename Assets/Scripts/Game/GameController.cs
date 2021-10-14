@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour
 
     public PathFinder pathFinder;
 
-    public string status = "idle";
+    public GameStatuses status = GameStatuses.idle;
+
     public Character active_character;
 
     public List<Player> players = new List<Player>();
@@ -28,12 +29,29 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (status == GameStatuses.use_skill)
         {
-            active_character.SkillActivate();
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit, 10000f))
+                {
+                    if (hit.transform != null)
+                    {
+                        if (hit.transform.gameObject.tag == "PathNode")
+                        {
+                            PathNode target = hit.transform.gameObject.GetComponent<PathNode>();
+
+                            active_character.skills[active_character.active_skill].Activate(target);
+                        }
+                    }
+                }
+            }
         }
 
-        if (status == "search_path")
+        if (status == GameStatuses.search_path)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -55,7 +73,7 @@ public class GameController : MonoBehaviour
 
                             cameraFocus.Move(pathFinder.full_path[pathFinder.full_path.Count-1].transform.position, 3f);
 
-                            status = "idle";
+                            status = GameStatuses.idle;
                         }
                     }
                 }
@@ -103,6 +121,11 @@ public class GameController : MonoBehaviour
         start_node = grid.gridArray[active_character.x, active_character.z];
         start_node.GetComponent<Renderer>().material.color = Color.red;
 
-        status = "search_path";
+        status = GameStatuses.search_path;
+    }
+
+    public Character GetActiveCharacter()
+    {
+        return this.active_character;
     }
 }

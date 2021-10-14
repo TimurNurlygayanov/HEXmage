@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed = 10f;
+    public void Awake()
+    {
+        Destroy(this, 2f);
+    }
 
+    void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("HIT");
+    }
 }
