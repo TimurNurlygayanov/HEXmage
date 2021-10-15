@@ -36,11 +36,19 @@ public class MapGeneration : MonoBehaviour
     {
         grid = new HexGrid(mapWidth, mapHeight);
 
-        generateMap();
+        List<Character> reserved = new List<Character>();
 
         foreach(GameObject character in GameObject.FindGameObjectsWithTag("Character"))
         {
-            character.GetComponent<Character>().InitiateCharacter(grid);
+            reserved.Add(character.GetComponent<Character>());
+        }
+
+        generateMap(reserved);
+
+        foreach (GameObject character in GameObject.FindGameObjectsWithTag("Character"))
+        {
+            bool result = character.GetComponent<Character>().InitiateCharacter(grid);
+
         }
 
         GameObject gameController = GameObject.FindGameObjectWithTag("GameController");
@@ -48,7 +56,7 @@ public class MapGeneration : MonoBehaviour
     }
 
     // Update is called once per frame
-    void generateMap()
+    void generateMap(List<Character> characters)
     {
         minTileX = (int) -mapWidth / 2;
         maxTileX = (int) mapWidth / 2;
@@ -81,55 +89,44 @@ public class MapGeneration : MonoBehaviour
                 {
                     // select the field type
                     int field_type = Random.Range(1, 30);
+                    bool char_field = false;
 
-                    if (field_type < 26)
+                    foreach (Character character in characters)
+                    {
+                        if (Mathf.Abs(x + maxTileX - character.x) + Mathf.Abs(z + maxTileZ - character.z) < 2) char_field = true;
+                    }
+
+                    if (field_type < 26 || char_field == true)
                     {
                         new_tile = Instantiate(this.hex_field_with_grass);
                     }
-                    else
-                    if (field_type < 27)
+                    else if (field_type < 28)
                     {
                         new_tile = Instantiate(this.hex_field_with_stone);
                         blocked = true;
                     }
-                    else if (field_type < 28)
+                    else if (field_type < 29)
                     {
                         new_tile = Instantiate(this.hex_field_with_tree1);
                         blocked = true;
                     }
-                    else if (field_type < 31)
+                    else if (field_type <= 30)
                     {
                         new_tile = Instantiate(this.hex_field_with_tree2);
                         blocked = true;
                     }
                 }
-                else
-                {
-                    // area around war zone, it should be blocked for player:
-                    new_tile = Instantiate(this.hex_field_with_tree2);
-                    blocked = true;
-                }
 
-                if (z % 2 == 0)
-                {
-                    new_tile.transform.position = new Vector3(x * xOffset, 0.0f, z * zOffset);
-                }
-                else
-                {
-                    new_tile.transform.position = new Vector3(x * xOffset + xOffset / 2, 0.0f, z * zOffset);
-                }
 
+                new_tile.transform.position = new_position;
                 setTileInfo(new_tile, x + maxTileX, z + maxTileZ, blocked);
             }
         }
-
-        // cleanMap();
     }
 
     void setTileInfo(PathNode tile, int x, int z, bool blocked)
     {
         tile.transform.parent = transform;
-        // PathNode node = tile.AddComponent<PathNode>();
         tile.x = x;
         tile.z = z;
 
@@ -149,11 +146,8 @@ public class MapGeneration : MonoBehaviour
         {
             for (int j = 0; j < mapHeight; j++)
             {
-                if (Vector3.Distance(grid.gridArray[i, j].transform.position, transform.position) > radius)
-                {
-                    Destroy(grid.gridArray[i, j].gameObject);
-                    grid.gridArray[i, j] = null;
-                }
+                if (grid.gridArray[i, j]) Destroy(grid.gridArray[i, j].gameObject);
+                grid.gridArray[i, j] = null;
             }
         }
     }

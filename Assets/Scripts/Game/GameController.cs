@@ -40,12 +40,11 @@ public class GameController : MonoBehaviour
                 {
                     if (hit.transform != null)
                     {
-                        if (hit.transform.gameObject.tag == "PathNode")
-                        {
-                            PathNode target = hit.transform.gameObject.GetComponent<PathNode>();
+                        GameObject target = hit.transform.gameObject;
 
-                            active_character.skills[active_character.active_skill].Activate(target);
-                        }
+                        active_character.skills[active_character.active_skill].Activate(target);
+
+                        status = GameStatuses.idle;
                     }
                 }
             }
@@ -119,7 +118,6 @@ public class GameController : MonoBehaviour
         active_character = players[active_player_number].GetCharacter();
 
         start_node = grid.gridArray[active_character.x, active_character.z];
-        start_node.GetComponent<Renderer>().material.color = Color.red;
 
         status = GameStatuses.search_path;
     }

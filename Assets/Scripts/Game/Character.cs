@@ -41,15 +41,23 @@ public class Character : MonoBehaviour
         myAnimator = this.GetComponent<Animator>();
     }
 
-    public void InitiateCharacter(HexGrid grid)
+    public bool InitiateCharacter(HexGrid grid)
     {
         this.grid = grid;
 
         tile = grid.gridArray[x, z];
-        transform.position = tile.transform.position + new Vector3(0, 5, 0);
+        transform.position = tile.transform.position + new Vector3(0, 2, 0);
+
+        if (grid.gridArray[x, z].status == "blocked")
+        {
+            return false;
+        }
 
         // mark this field as blocked to ask path finder to ignore this field
         grid.gridArray[x, z].status = "blocked";
+
+        // Return true to confirm we were able to create character
+        return true;
     }
 
 
@@ -57,6 +65,8 @@ public class Character : MonoBehaviour
     {
         this.path = path_to_go;
 
+        path[path.Count - 1].status = "blocked";
+        path[0].status = "free";
         ClearTile(path[0]);
 
         this.path.Remove(this.path[0]);  // 0 node is the current position
@@ -73,9 +83,21 @@ public class Character : MonoBehaviour
         transform.LookAt(target.transform);
     }
 
+    public void GetDamage(int damage)
+    {
+        Health -= damage;
+
+        /// Play animation of death and do not destroy the object
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+
+            grid.gridArray[x, z].status = "free";
+        }
+    }
+
     private void ClearTile(PathNode tile)
     {
-        tile.status = "free";
         tile.gameObject.GetComponent<Renderer>().material = ground_material;
     }
 

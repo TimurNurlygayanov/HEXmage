@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1702740324651149640}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 9215746067737050844}
   m_Layer: 0
   m_Name: hex_tree2
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,6 +378,7 @@ MonoBehaviour:
   fCost: 0
   cameFromNode: {fileID: 0}
   status: 
+  original_material: {fileID: 0}
 --- !u!1 &9059279834811031720
 GameObject:
   m_ObjectHideFlags: 0

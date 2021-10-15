@@ -15,4 +15,5 @@ MonoBehaviour:
   mage: {fileID: 0}
   speed: 5
   damage: 1
-  fireball_prefab: {fileID: 424223323376660541, guid: 3f1d8aa3319927641ba2687d514bfcee, type: 3}
+  fireball_prefab: {fileID: 97884988622822134, guid: 1ab1caa308d8109498d68b68f5671a8b, type: 3}
+  after_effect: {fileID: 8469695151190881495, guid: 6f0959c812ec5244b8acbc7e8ea5b27c, type: 3}

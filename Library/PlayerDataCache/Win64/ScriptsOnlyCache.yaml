@@ -4,6 +4,10 @@ ScriptsOnlyBuild:
     - CameraFocusObject
     - CameraFolow
     - Character
+    - DigitalRuby.PyroParticles.FireConstantBaseScript
+    - DigitalRuby.PyroParticles.FireLightScript
+    - Fireball
+    - FireballSkill
     - GameController
     - MapGeneration
     - Outline
@@ -15,10 +19,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -62,6 +64,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -75,37 +81,45 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1476}
+      Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1488}
+      Script: {instanceID: 1492}
     - Class: 114
-      Script: {instanceID: 1626}
+      Script: {instanceID: 1582}
     - Class: 114
-      Script: {instanceID: 1834}
+      Script: {instanceID: 1634}
     - Class: 114
-      Script: {instanceID: 2018}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2320}
+      Script: {instanceID: 1890}
     - Class: 114
-      Script: {instanceID: 2406}
+      Script: {instanceID: 2028}
     - Class: 114
-      Script: {instanceID: 2442}
+      Script: {instanceID: 2334}
     - Class: 114
-      Script: {instanceID: 2600}
+      Script: {instanceID: 2420}
     - Class: 114
-      Script: {instanceID: 2794}
+      Script: {instanceID: 2456}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2616}
     - Class: 114
-      Script: {instanceID: 4032}
+      Script: {instanceID: 2810}
     - Class: 114
-      Script: {instanceID: 4056}
+      Script: {instanceID: 2898}
     - Class: 114
-      Script: {instanceID: 4198}
+      Script: {instanceID: 4054}
     - Class: 114
-      Script: {instanceID: 4232}
+      Script: {instanceID: 4076}
     - Class: 114
-      Script: {instanceID: 4560}
+      Script: {instanceID: 4218}
+    - Class: 114
+      Script: {instanceID: 4252}
+    - Class: 114
+      Script: {instanceID: 4576}
+    - Class: 114
+      Script: {instanceID: 33806}
+    - Class: 114
+      Script: {instanceID: 33814}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -115,6 +129,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -161,6 +179,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 37397d68b68ee803273ad94c44c5a75f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FireballSkill
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -241,7 +265,7 @@ ScriptsOnlyBuild:
     className: CinemachineCameraOffset
   - hash:
       serializedVersion: 2
-      Hash: 76e5444e7a1b26a6c00c9220e598c917
+      Hash: 75131e6e40b822bbfe2ae378c8dfc92f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UI_Buttons
@@ -251,6 +275,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineCollider
+  - hash:
+      serializedVersion: 2
+      Hash: ddefe7116f69beb3958bf0a483a8910f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Fireball
   - hash:
       serializedVersion: 2
       Hash: 15882a52798c275361cd0a3ada984ec5
@@ -781,7 +811,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 60e338730dacff9ce268e8f5f32efda5
+      Hash: c4fcb0ba951782428e8c6c1098dd5044
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Character
@@ -829,7 +859,7 @@ ScriptsOnlyBuild:
     className: CinemachineRecomposer
   - hash:
       serializedVersion: 2
-      Hash: d687168274cd2c5d5cf25e3e914d33e2
+      Hash: 351c9acb65957feb7d3d6c5b4c1fef16
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -887,6 +917,42 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PathNode
+  - hash:
+      serializedVersion: 2
+      Hash: e393b3cf019d3604c6d9c27df1a22c39
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: FireLightScript
+  - hash:
+      serializedVersion: 2
+      Hash: 669853fafdd959b7abf87c79703f5b3e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: MeteorSwarmScript
+  - hash:
+      serializedVersion: 2
+      Hash: f2e9964e2184d68450e47cf0989b6210
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: FireProjectileScript
+  - hash:
+      serializedVersion: 2
+      Hash: 9bc32bf9bef5f4ea94dc3f3d94fa972f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: FireConstantBaseScript
+  - hash:
+      serializedVersion: 2
+      Hash: 9bc32bf9bef5f4ea94dc3f3d94fa972f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: FireBaseScript
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DigitalRuby.PyroParticles
+    className: FireCollisionForwardScript
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
